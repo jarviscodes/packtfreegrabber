@@ -1,0 +1,9 @@
+setup.py
+packtfreegrabber/__init__.py
+packtfreegrabber/getFreeBook.py
+packtfreegrabber.egg-info/PKG-INFO
+packtfreegrabber.egg-info/SOURCES.txt
+packtfreegrabber.egg-info/dependency_links.txt
+packtfreegrabber.egg-info/entry_points.txt
+packtfreegrabber.egg-info/requires.txt
+packtfreegrabber.egg-info/top_level.txt
