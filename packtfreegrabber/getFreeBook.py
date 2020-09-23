@@ -53,14 +53,20 @@ def find_book_in_soup(soup: BeautifulSoup) -> FreeBook:
     """
 
     # XXX what happens when a book isn't found?
-    free_book = soup.find("div", {"class": "main-product"})
-    book_title = free_book.find("h3", {"class": "product-info__title"})
-    book_author = free_book.find("span", {"class": "free_learning__author"})
-    book_desc = free_book.find("div", {"class": "free_learning__product_description"})
-    book_release = free_book.find("div", {"class": "free_learning__product_pages_date"})
-    book_pages = free_book.find_all(
-        "div", {"class": "free_learning__product_pages_date"}
-    )
+    try:
+        free_book = soup.find("div", {"class": "main-product"})
+        book_title = free_book.find("h3", {"class": "product-info__title"})
+        book_author = free_book.find("span", {"class": "free_learning__author"})
+        book_desc = free_book.find("div", {"class": "free_learning__product_description"})
+        book_release = free_book.find("div", {"class": "free_learning__product_pages_date"})
+        book_pages = free_book.find_all(
+            "div", {"class": "free_learning__product_pages_date"}
+        )
+        # Packt might change the classes.
+    except AttributeError as ex:
+        print("Web page layout has been changed so scraper needs to be updated!")
+        print("Open an issue on github when this occurs with the following info:")
+        raise ex
 
     return FreeBook(
         title=book_title.text.strip("\n"),
@@ -75,3 +81,7 @@ def main():
     soup = get_soup()
     book = find_book_in_soup(soup)
     print(book)
+
+
+if __name__ == '__main__':
+    main()
