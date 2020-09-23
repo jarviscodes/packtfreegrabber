@@ -82,6 +82,3 @@ def main():
     book = find_book_in_soup(soup)
     print(book)
 
-
-if __name__ == '__main__':
-    main()
